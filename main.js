@@ -29,6 +29,9 @@ window.onload = function getLocation() {
             var sunrise = document.querySelector(".sunrise");
             sunrise.innerHTML = `<div><p><i class="wi wi-sunrise"></br>Sunrise</br> ${timeConverter(response.sys.sunrise)}</p></div>`;
 
+            var sunset = document.querySelector(".sunset");
+            sunset.innerHTML = `<div><p><i class="wi wi-sunset"></br>Sunset</br> ${timeConverter(response.sys.sunset)}</p></div>`;
+
           } else {
             console.error(xhr.statusText);
           }
@@ -65,7 +68,13 @@ function timeConverter(UNIX_timestamp) {
   var month = months[a.getMonth()];
   var date = a.getDate();
   var hour = a.getHours();
+  if (hour < 10) {
+    hour = "0" + a.getHours();
+  }
   var min = a.getMinutes();
+  if (min < 10) {
+    min = "0" + a.getMinutes();
+  }
   var sec = a.getSeconds();
   if (sec < 10) {
     sec = "0" + a.getSeconds();
