@@ -23,9 +23,12 @@ window.onload = function getLocation() {
             var loc = document.querySelector(".location");
             loc.textContent = response.name;
             var tEmp = document.querySelector(".temp");
-            tEmp.textContent = Math.round(response.main.temp) + "&#8451";
+            tEmp.innerHTML = `<h2>${Math.round(response.main.temp)}&#8451;</h2>`
             var condition = document.querySelector(".weatherCondition");
             condition.textContent = response.weather[0].main;
+            var sunrise = document.querySelector(".sunrise");
+            sunrise.innerHTML = `<div><p><i class="wi wi-sunrise"></br>Sunrise</br> ${timeConverter(response.sys.sunrise)}</p></div>`;
+
           } else {
             console.error(xhr.statusText);
           }
@@ -41,3 +44,33 @@ window.onload = function getLocation() {
   }
 
 };
+
+function timeConverter(UNIX_timestamp) {
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+  var year = a.getFullYear();
+  var month = months[a.getMonth()];
+  var date = a.getDate();
+  var hour = a.getHours();
+  var min = a.getMinutes();
+  var sec = a.getSeconds();
+  if (sec < 10) {
+    sec = "0" + a.getSeconds();
+  }
+  var time =
+    date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
+  return time;
+}

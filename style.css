@@ -1,3 +1,13 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
     padding: 0;
     margin: 0 auto;
@@ -5,18 +15,26 @@ body {
     background: url(https://images.unsplash.com/photo-1417008914239-59b898b49382?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfd189d77306bff4ac8766d90fef43c4&auto=format&fit=crop&w=1528&q=80);
 }
 
+.sunrise>* {}
+
 .wi {
-    font-size: 5em;
+    font-size: 2em;
+    text-align: center;
 }
 
 .wrapper {
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - 10px);
     height: auto;
     width: auto;
     display: grid;
-    grid-row-gap: 5px;
-    grid-template-columns: repeat(7, auto-fit);
-    grid-template-rows: auto;
-    grid-template-areas: "wallpaper wallpaper wallpaper wallpaper wallpaper" "weatherForecast1 weatherForecast2 weatherForecast3 weatherForecast4 weatherForecast5" "weatherForecast1 weatherForecast2 weatherForecast3 weatherForecast4 weatherForecast5" "weatherForecast1 weatherForecast2 weatherForecast3 weatherForecast4 weatherForecast5";
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    grid-template-rows: repeat(10, fit-content(50px));
+}
+
+.wrapper>* {
+    border: 1px solid #ffc600;
 }
 
 .weatherToday {
@@ -64,15 +82,25 @@ body {
 }
 .wi {
     display: grid;
+    margin: 0;
+    padding: 0;
+}
+.wi::before {
+    font-size: 3rem;
+}
+.wi.wi-night-sleet {
+    display: grid;
     grid-area: wi;
     font-size: 150px;
     justify-self: center;
     padding-bottom: 10px;
 }
-.wrapper>* {}
 .wallpaper {
     display: grid;
-    grid-area: wallpaper;
+    /* grid-area: wallpaper; */
+    
+    grid-column: 1/-1;
+    grid-row: 1/7;
     width: 100vw;
     height: 80vh;
     align-content: center;
@@ -82,29 +110,21 @@ body {
     display: grid;
     grid-area: weatherToday;
 }
-.weatherForecast1 {
+.weatherInfo {
+    height: 100%;
     display: grid;
-    grid-area: weatherForecast1;
+    grid-auto-flow: column;
+    padding: 0;
+    margin: 0;
+    grid-column: 1/-1;
+    grid-row: 7/-1;
     background: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+    grid-template-columns: repeat(5, minmax(50, 1fr));
+    grid-template-rows: 1fr;
+    align-items: start;
+    justify-items: center;
 }
-.weatherForecast2 {
-    display: grid;
-    grid-area: weatherForecast2;
-    background: rgba(0, 0, 0, 0.5);
-}
-.weatherForecast3 {
-    display: grid;
-    grid-area: weatherForecast3;
-    background: rgba(0, 0, 0, 0.5);
-}
-.weatherForecast4 {
-    display: grid;
-    grid-area: weatherForecast4;
-    background: rgba(0, 0, 0, 0.5);
-}
-.weatherForecast5 {
-    display: grid;
-    grid-area: weatherForecast5;
-    background: rgba(0, 0, 0, 0.5);
-    height: 300px;
+.weatherInfo>* {
+    border: 1px solid #ffc600;
 }
