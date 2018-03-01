@@ -9,9 +9,12 @@ html {
 }
 
 body {
+    box-sizing: border-box;
+    min-height: 100vh;
+    margin: 0;
     padding: 0;
-    margin: 0 auto;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
     background: url(https://images.unsplash.com/photo-1417008914239-59b898b49382?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfd189d77306bff4ac8766d90fef43c4&auto=format&fit=crop&w=1528&q=80);
 }
 
@@ -23,11 +26,12 @@ body {
 }
 
 .wrapper {
+    min-height: 100%;
     margin: 0;
     padding: 0;
     height: calc(100vh - 10px);
     height: auto;
-    width: auto;
+    width: 100%;
     display: grid;
     grid-template-columns: repeat(5, minmax(200px, 1fr));
     grid-template-rows: repeat(10, fit-content(50px));
@@ -110,7 +114,8 @@ body {
     display: grid;
     grid-area: weatherToday;
 }
-.weatherInfo {
+
+/* .weatherInfo {
     height: 100%;
     display: grid;
     grid-auto-flow: column;
@@ -127,4 +132,18 @@ body {
 }
 .weatherInfo>* {
     border: 1px solid #ffc600;
+} */
+.weatherInfo {
+    height: 100%;
+    display: flex;
+    margin-top: auto;
+    grid-column: 1/-1;
+    grid-row: 7/-1;
+    background: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+    flex-direction: row;
+    flex-basis: 200px;
+}
+.weatherInfo>* {
+    flex-grow: 1;
 }
