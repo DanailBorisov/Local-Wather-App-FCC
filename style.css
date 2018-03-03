@@ -17,7 +17,8 @@ body {
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    background: url(https://images.unsplash.com/photo-1417008914239-59b898b49382?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfd189d77306bff4ac8766d90fef43c4&auto=format&fit=crop&w=1528&q=80);
+    /* background-image: url(https://images.unsplash.com/photo-1417008914239-59b898b49382?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfd189d77306bff4ac8766d90fef43c4&auto=format&fit=crop&w=1528&q=80); */
+    background-size: cover;
 }
 
  ::-webkit-scrollbar {
@@ -148,10 +149,6 @@ span>.wi {
     width: 100%;
     justify-content: center;
 }
-.currentTime {
-    width: 100%;
-    text-align: center;
-    color: #123123;
-    font-size: 20px;
-    font-weight: 700;
+.hidden {
+    visibility: hidden;
 }
