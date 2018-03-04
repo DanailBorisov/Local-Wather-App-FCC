@@ -17,8 +17,14 @@ body {
     padding: 0;
     overflow-x: hidden;
     overflow-y: auto;
-    /* background-image: url(https://images.unsplash.com/photo-1417008914239-59b898b49382?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfd189d77306bff4ac8766d90fef43c4&auto=format&fit=crop&w=1528&q=80); */
     background-size: cover;
+    font-family: 'Roboto', sans-serif;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
  ::-webkit-scrollbar {
@@ -59,11 +65,19 @@ span>.wi {
     color: whitesmoke;
     display: grid;
     grid-template-columns: minmax(150px, 1fr) minmax(150px, 1fr);
-    grid-template-rows: repeat(3, auto-fit);
-    grid-template-areas: "location gif" "wi gif" "temp gif" "weatherCondition gif";
+    grid-template-rows: repeat(5, min-max(50px, 1fr));
+    grid-template-areas: "location gif" "wi gif" "wi gif" "temp gif" "weatherCondition gif";
     justify-items: center;
     align-content: center;
     border-radius: 25px;
+    box-shadow: -14px 14px 28px rgba(0, 0, 0, 0.60), 0 10px 10px rgba(0, 0, 0, 0.60);
+}
+
+.weatherToday div {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: 3em;
 }
 
 
@@ -71,16 +85,31 @@ span>.wi {
 .location {
     grid-area: location;
     justify-self: center;
+    grid-rows: 1/2;
+}
+.location h1 {
+    font-size: 3em;
 }
 .temp {
+    display: grid;
     grid-area: temp;
-    justify-self: center;
     align-self: center;
+    align-items: center;
+    justify-items: center;
+    grid-rows: 2/4;
+}
+.temp h1 {
+    font-size: 3em;
 }
 .weatherCondition {
+    display: grid;
     grid-area: weatherCondition;
-    justify-self: center;
-    align-self: start;
+    justify-items: center;
+    align-items: center;
+    grid-rows: 4/5;
+}
+.weatherCondition h1 {
+    font-size: 3em;
 }
 .gif {
     display: grid;
@@ -110,10 +139,6 @@ span>.wi {
     justify-content: center;
     overflow: auto;
 }
-.weatherToday {
-    display: grid;
-    grid-area: weatherToday;
-}
 .weatherInfo {
     font-size: 1.1em;
     margin: 0;
@@ -129,6 +154,7 @@ span>.wi {
     justify-content: space-between;
     align-content: center;
     overflow: auto;
+    border-top: 1px solid linear-gradient(#ffc600, rgba(0, 0, 0, 0.5)))
 }
 .weatherInfo>* {
     margin: 0;
@@ -143,12 +169,35 @@ span>.wi {
 .footer {
     height: 50px;
     color: #ffc600;
+    border-top: 2px solid #ffc600;
     background: rgba(0, 0, 0, 1);
     text-align: center;
     font-size: 1em;
     width: 100%;
     justify-content: center;
 }
-.hidden {
+.footer>* .hidden {
     visibility: hidden;
+}
+.sunrise,
+.sunset,
+.wind,
+.humidity,
+.pressure {
+    transition: all .2s ease-in-out;
+}
+.sunrise:hover,
+.sunset:hover,
+.wind:hover,
+.humidity:hover,
+.pressure:hover {
+    transform: scaleX(1.05);
+    color: #ffc600;
+}
+.metrics {
+    font-size: 0.8em;
+}
+.metrics:hover {
+    color: #ffc600;
+    font-size: 0.8em;
 }

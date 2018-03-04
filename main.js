@@ -6,13 +6,11 @@ const currentTime = new Date();
 const day = currentTime.getHours() > 6 && currentTime.getHours() < 19;
 
 
-
-
 window.onload = function getLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      let lat = "lat=" + position.coords.latitude;
-      let lon = "lon=" + position.coords.longitude;
+      const lat = "lat=" + position.coords.latitude;
+      const lon = "lon=" + position.coords.longitude;
       urlStr += api + lat + "&" + lon;
       const xhr = new XMLHttpRequest();
 
@@ -241,10 +239,22 @@ window.onload = function getLocation() {
             }
 
 
-
             //temperature
             const tEmp = document.querySelector(".temp");
-            tEmp.innerHTML = ` <h1> ${Math.round(response.main.temp)} &#8451;</h1>`;
+            const celsius = response.main.temp;
+            const farenheit = response.main.temp * 9 / 5 + 32;
+            tEmp.innerHTML = ` <h1> ${celsius.toFixed(1)} <span id="celsius" class="metrics">&#8451;<span></h1>`;
+            //Converting to Farenheit or Celsius
+            function convertMetrics(e) {
+              if (e.target.id === 'celsius') {
+                tEmp.innerHTML = ` <h1> ${farenheit.toFixed(1)} <span id="farenheit" class="metrics">&#8457;<span></h1>`;
+              } else {
+                tEmp.innerHTML = ` <h1> ${celsius.toFixed(1)} <span id="celsius" class="metrics">&#8451;<span></h1>`;
+              }
+            };
+            tEmp.addEventListener('click', convertMetrics);
+
+
             //Weather condition
             const condition = document.querySelector(".weatherCondition");
             condition.innerHTML =
@@ -264,8 +274,6 @@ window.onload = function getLocation() {
             //Wind
             const wind = document.querySelector(".wind");
             wind.innerHTML = `<div><p><i class="wi wi-strong-wind"></br>Wind</br> ${response.wind.speed}  mph</p></div>`;
-
-
 
 
           } else {
@@ -319,4 +327,10 @@ function timeConverter(UNIX_timestamp) {
   let time =
     date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
   return time;
+}
+
+function toFarenheit(a) {
+  a = response.main.temp;
+  let farenheit = a * 9 / 5 + 32;
+  return farenheit.toFixed(1);
 }
