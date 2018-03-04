@@ -4,6 +4,8 @@ const api = "https://fcc-weather-api.glitch.me/api/current?";
 let urlStr = "";
 const currentTime = new Date();
 const day = currentTime.getHours() > 6 && currentTime.getHours() < 19;
+//current time (might us e for digital clock)
+const dateTime = timeConverter(Date.now() / 1000);
 
 
 window.onload = function getLocation() {
@@ -28,8 +30,8 @@ window.onload = function getLocation() {
             loc.innerHTML = `<h1>${response.name}</h1>`;
             //gif image
             const image = document.getElementById("image");
-            if (response) {
-              image.classList.remove('hidden');
+            if (xhr.status === 200) {
+              image.classList.remove("hidden");
             }
             //WeatherIcon
             const weatherIcon = document.querySelector(".weatherIcon");
@@ -289,6 +291,7 @@ window.onload = function getLocation() {
   } else {
     console.log("Geolocation is not supported by this browser.");
   }
+  //footer
 
 };
 
