@@ -4,9 +4,8 @@ const api = "https://fcc-weather-api.glitch.me/api/current?";
 let urlStr = "";
 const currentTime = new Date();
 const day = currentTime.getHours() > 6 && currentTime.getHours() < 19;
-//current time (might us e for digital clock)
-const dateTime = timeConverter(Date.now() / 1000);
 
+const dateTime = timeConverter(Date.now() / 1000);
 
 window.onload = function getLocation() {
   if (navigator.geolocation) {
@@ -292,7 +291,9 @@ window.onload = function getLocation() {
     console.log("Geolocation is not supported by this browser.");
   }
   //footer
+  const footer = document.querySelector('.footer');
 
+  // footer.innerHTML = `<span>${dateTime}</span>`;
 };
 
 
@@ -331,9 +332,42 @@ function timeConverter(UNIX_timestamp) {
     date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
   return time;
 }
+//Digital clock + date
 
-function toFarenheit(a) {
-  a = response.main.temp;
-  let farenheit = a * 9 / 5 + 32;
-  return farenheit.toFixed(1);
+function dateAndTime() {
+  const time = new Date();
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec"
+  ];
+  let year = time.getFullYear();
+  let month = months[time.getMonth()];
+  let date = time.getDate();
+  let hour = time.getHours();
+  if (hour < 10) {
+    hour = "0" + time.getHours();
+  }
+  let min = time.getMinutes();
+  if (min < 10) {
+    min = "0" + time.getMinutes();
+  }
+  let sec = time.getSeconds();
+  if (sec < 10) {
+    sec = "0" + time.getSeconds();
+  }
+  let exactTime =
+    date + " " + month + " " + year + " " + hour + ":" + min + ":" + sec;
+  const timeField = document.querySelector("#dateAndTime");
+  timeField.textContent = exactTime;
 }
+setInterval(dateAndTime, 1000);

@@ -167,6 +167,7 @@ span>.wi {
     font-size: 50px;
 }
 .footer {
+    display: flex;
     height: 50px;
     color: #ffc600;
     border-top: 2px solid #ffc600;
@@ -174,9 +175,9 @@ span>.wi {
     text-align: center;
     font-size: 1em;
     width: 100%;
-    justify-content: center;
+    justify-content: space-around;
 }
-.footer>* .hidden {
+.hidden {
     visibility: hidden;
 }
 .sunrise,
@@ -203,4 +204,100 @@ span>.wi {
 }
 .hidden {
     display: none;
+}
+#dateAndTime {
+    font-size: 1.2em;
+}
+@media (max-width: 600px) {
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .wrapper {
+        display: grid;
+        grid-template-columns: minmax(100px, 1fr);
+        grid-template-rows: 3fr 1fr;
+        grid-template-areas: "wallpaper" "wallpaper" "wallpaper" "weatherInfo"
+    }
+    
+    .wallpaper {
+        display: grid;
+        grid-area: wallpaper;
+        width: 100%;
+        align-self: center;
+        justify-self: center;
+        height: 100vh;
+    }
+    
+    .weatherToday {
+        height: 80%;
+        width: 100%;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-areas: "location" "wi" "wi" "temp" "weatherCondition";
+        align-self: center;
+        jutify-self: center;
+    }
+    
+    .location {
+        grid-area: location;
+    }
+    
+    .weatherIcon {
+        grid-area: wi
+    }
+    
+    .temp {
+        grid-area: temp
+    }
+    
+    .weatherCondition {
+        grid-area: weatherCondition;
+    }
+    
+    .weatherToday>* {
+        font-size: 1em;
+    }
+    
+    .gif>* {
+        display: none;
+    }
+    
+    .weatherInfo {
+        grid-area: weatherInfo;
+        display: grid;
+        grid-template-columns: minmax(100px, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+        border-radius: 25px;
+        width: 80%;
+        align-self: center;
+        justify-self: center;
+    }
+    
+    .weatherInfo>* {}
+    
+    .footer {
+        background: #161616;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: "dateAndTime""etc"
+    }
+    
+    #dateAndTime {
+        grid-area: dateAndTime;
+        background: #161616;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #etc {
+        grid-area: etc;
+        background: #161616;
+        margin: 0;
+        padding: 0;
+    }
 }
